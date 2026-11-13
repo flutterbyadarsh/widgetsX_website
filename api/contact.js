@@ -103,7 +103,7 @@ module.exports = async function handler(req, res) {
         to: email,
         replyTo: adminEmail,
         subject: `[WidgetX] Inquiry Received & Dispatched (#${ticketId})`,
-        text: `Hello ${name},\n\nThank you for contacting WidgetX Support. This confirms that your request regarding "${issue || 'your inquiry'}" for ${platform || 'WidgetX Apps'} has been successfully delivered and logged into our queue.\n\nTicket Reference: #${ticketId}\nEstimated Response Time: Within 24 business hours.\n\nSummary of your request:\n"${message}"\n\nIf you have additional logs or details to share, you can reply directly to this email or reach us at contact.widgetx@gmail.com.\n\nBest regards,\nWidgetX Compliance & Engineering Team\nhttps://github.com`,
+        text: `Hello ${name},\n\nThank you for contacting WidgetX Support. This confirms that your request regarding "${issue || 'your inquiry'}" for ${platform || 'WidgetX Apps'} has been successfully delivered and logged into our queue.\n\nTicket Reference: #${ticketId}\nReceived At (24h): ${formattedTimestamp}\nEstimated Response Time: Within 24 business hours.\n\nSummary of your request:\n"${message}"\n\nIf you have additional logs or details to share, you can reply directly to this email or reach us at contact.widgetx@gmail.com.\n\nBest regards,\nWidgetX Compliance & Engineering Team\nhttps://github.com/flutterbyadarsh`,
         html: `
           <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #0A192F; color: #FFFFFF; padding: 28px; border-radius: 12px; max-width: 600px;">
             <div style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 16px; margin-bottom: 20px;">
@@ -133,8 +133,8 @@ module.exports = async function handler(req, res) {
             <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 24px 0 16px 0;" />
             <div style="font-size: 12px; color: #64748B;">
               WidgetX Systems • Software Publisher &bull;
-              <a href="https://github.com" style="color: #2DE2B6; text-decoration: none;">GitHub</a> &bull;
-              <a href="https://linkedin.com" style="color: #2DE2B6; text-decoration: none;">LinkedIn</a>
+              <a href="https://github.com/flutterbyadarsh" style="color: #2DE2B6; text-decoration: none;">GitHub</a> &bull;
+              <a href="https://www.linkedin.com/in/adarsh-gupta-b850903b8" style="color: #2DE2B6; text-decoration: none;">LinkedIn</a>
             </div>
           </div>
         `,
