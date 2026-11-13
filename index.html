@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WidgetX — Building Innovative Cross-Platform Solutions</title>
+  <meta name="description" content="Crafting fast, intuitive, and secure mobile & web utilities engineered for seamless digital experiences.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Ambient Space / Zero-Gravity Particle Canvas -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+  <canvas id="ambient-particles" aria-hidden="true"></canvas>
+
+  <!-- Navigation Bar -->
+  <header class="navbar-wrapper">
+    <nav class="navbar" aria-label="Main Navigation">
+      <a href="#" class="brand-logo" aria-label="WidgetX Home">
+        <div class="logo-box">
+          <img src="assets/logo.png" alt="WidgetX Logo" class="brand-icon">
+        </div>
+        <span class="brand-name">WIDGETX</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#products" class="nav-link active">Apps</a></li>
+        <li><a href="#compliance" class="nav-link">Compliance</a></li>
+        <li><a href="#support" class="nav-link">Support</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="status-indicator-pill" title="All systems operational">
+          <span class="pulse-dot"></span>
+          <span class="status-text">v2.4 Live</span>
+        </div>
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="WidgetX GitHub">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="WidgetX LinkedIn">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+          </svg>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page-container">
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="hero-center-badge">
+        <div class="hero-badge-glass">
+          <img src="assets/logo.png" alt="WidgetX Core" class="hero-badge-icon">
+        </div>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="hero-title-main">WidgetX — Building Innovative</span>
+        <span class="hero-title-gradient">Cross-Platform Solutions</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Crafting fast, intuitive, and secure mobile &amp; web utilities engineered for seamless digital experiences.
+      </p>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section class="featured-section" id="products">
+      <div class="section-tag-wrapper">
+        <span class="section-tag">FEATURED PRODUCTS</span>
+      </div>
+
+      <!-- Platform Filter Tabs -->
+      <div class="filter-tabs-wrapper">
+        <div class="filter-tabs" role="tablist" aria-label="Product Platforms">
+          <button class="filter-tab active" role="tab" aria-selected="true" data-filter="all">Android</button>
+          <button class="filter-tab" role="tab" aria-selected="false" data-filter="web">Web</button>
+          <button class="filter-tab" role="tab" aria-selected="false" data-filter="ios">iOS</button>
+          <button class="filter-tab" role="tab" aria-selected="false" data-filter="macos">macOS</button>
+          <button class="filter-tab" role="tab" aria-selected="false" data-filter="linux">Linux</button>
+          <button class="filter-tab" role="tab" aria-selected="false" data-filter="other">Other</button>
+        </div>
+      </div>
+
+      <!-- Anti-Gravity Floating App Cards Grid -->
+      <div class="app-cards-grid">
+        
+        <!-- App Card 1: TrackFlow -->
+        <article class="app-card anti-gravity-card anti-gravity-card-1" id="card-trackflow">
+          <div class="card-inner">
+            <div class="card-header">
+              <div class="app-icon-container trackflow-icon-bg">
+                <svg viewBox="0 0 24 24" class="app-icon-svg" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+              </div>
+              <div class="card-title-group">
+                <h3 class="card-app-title">TrackFlow</h3>
+                <span class="card-app-category category-telemetry">HEALTH &amp; TELEMETRY</span>
+              </div>
+            </div>
+
+            <p class="card-description">
+              Intelligent background activity &amp; fitness tracking designed with strict privacy-first architecture.
+            </p>
+
+            <div class="card-action">
+              <a href="#modal-trackflow" class="google-play-btn" aria-label="Get TrackFlow on Google Play">
+                <svg class="play-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <path d="M3.609 1.814L13.792 12 3.61 22.186c-.365-.365-.61-.915-.61-1.614V3.428c0-.699.245-1.249.609-1.614zm11.244 11.245l2.423 2.423-11.29 6.452 8.867-8.875zm0-2.118L5.986 2.066l11.29 6.452-2.423 2.423zm1.485 1.059l3.528 2.016c1.077.616 1.077 1.625 0 2.241l-3.528 2.016-2.118-2.118 2.118-2.155z"/>
+                </svg>
+                <span>Get it on Google Play</span>
+              </a>
+            </div>
+          </div>
+          <div class="card-elevation-aura"></div>
+        </article>
+
+        <!-- App Card 2: ConnectCall -->
+        <article class="app-card anti-gravity-card anti-gravity-card-2" id="card-connectcall">
+          <div class="card-inner">
+            <div class="card-header">
+              <div class="app-icon-container connectcall-icon-bg">
+                <svg viewBox="0 0 24 24" class="app-icon-svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  <path d="M14.05 2a9 9 0 0 1 8 7.94"></path>
+                  <path d="M14.05 6a5 5 0 0 1 4 3.9"></path>
+                </svg>
+              </div>
+              <div class="card-title-group">
+                <h3 class="card-app-title">ConnectCall</h3>
+                <span class="card-app-category category-network">VOICE &amp; NETWORK</span>
+              </div>
+            </div>
+
+            <p class="card-description">
+              Crystal-clear encrypted voice and low-latency audio utility for global teams.
+            </p>
+
+            <div class="card-action">
+              <a href="#modal-connectcall" class="google-play-btn" aria-label="Get ConnectCall on Google Play">
+                <svg class="play-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <path d="M3.609 1.814L13.792 12 3.61 22.186c-.365-.365-.61-.915-.61-1.614V3.428c0-.699.245-1.249.609-1.614zm11.244 11.245l2.423 2.423-11.29 6.452 8.867-8.875zm0-2.118L5.986 2.066l11.29 6.452-2.423 2.423zm1.485 1.059l3.528 2.016c1.077.616 1.077 1.625 0 2.241l-3.528 2.016-2.118-2.118 2.118-2.155z"/>
+                </svg>
+                <span>Get it on Google Play</span>
+              </a>
+            </div>
+          </div>
+          <div class="card-elevation-aura"></div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Trust & Governance + Support & Requests Dual Grid -->
+    <section class="governance-support-section" id="compliance">
+      <div class="dual-grid-container">
+        
+        <!-- Left: Trust & Compliance Column -->
+        <div class="compliance-column">
+          <div class="section-tag-wrapper align-left">
+            <span class="section-tag">VERIFICATION &amp; GOVERNANCE</span>
+          </div>
+
+          <h2 class="section-title">Trust &amp; Compliance</h2>
+          <p class="section-description">
+            Transparent policies built on integrity and user data protection. We enforce least-privilege telemetry across every platform.
+          </p>
+
+          <!-- Interactive Policy Rows -->
+          <div class="policy-links-list">
+            <button class="policy-link-item" data-modal="privacy-modal">
+              <span class="policy-link-text">Privacy Policy</span>
+              <svg class="chevron-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+
+            <button class="policy-link-item" data-modal="terms-modal">
+              <span class="policy-link-text">Terms of Service</span>
+              <svg class="chevron-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+
+            <button class="policy-link-item" data-modal="retention-modal">
+              <span class="policy-link-text">Data Retention &amp; Security Overview</span>
+              <svg class="chevron-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Google Play Compliance Badge Card -->
+          <div class="compliance-badge-card">
+            <div class="shield-icon-container">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#2DE2B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <polyline points="9 12 11 14 15 10"></polyline>
+              </svg>
+            </div>
+            <div class="badge-text-group">
+              <span class="badge-title">Families Policy Compliant</span>
+              <span class="badge-sub">Verified Google Play Requirements</span>
+            </div>
+          </div>
+
+          <!-- Direct support info -->
+          <div class="direct-support-note">
+            Direct support channel: <a href="mailto:contact.widgetx@gmail.com" class="support-email-link">contact.widgetx@gmail.com</a>
+          </div>
+          <div class="support-social-row">
+            <span class="social-label">Verified Channels:</span>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-chip" title="WidgetX GitHub">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              <span>GitHub</span>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-chip" title="WidgetX LinkedIn">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Support & Data Requests Card -->
+        <div class="support-column" id="support">
+          <div class="support-card">
+            <h3 class="support-card-title">Support &amp; Data Requests</h3>
+            <p class="support-card-subtitle">
+              Inquiries and account deletion requests are typically processed within 24 business hours.
+            </p>
+
+            <form class="support-form" id="supportForm" novalidate>
+              <!-- Field: Name -->
+              <div class="form-group">
+                <label for="userName" class="form-label">NAME</label>
+                <input type="text" id="userName" name="name" class="form-input" placeholder="Your name" required>
+              </div>
+
+              <!-- Field: Email -->
+              <div class="form-group">
+                <label for="userEmail" class="form-label">EMAIL ADDRESS</label>
+                <input type="email" id="userEmail" name="email" class="form-input" placeholder="name@company.com" required>
+              </div>
+
+              <!-- Field: Platform -->
+              <div class="form-group">
+                <label for="platformSelect" class="form-label">APPLICATION PLATFORM</label>
+                <div class="select-wrapper">
+                  <select id="platformSelect" name="platform" class="form-select" required>
+                    <option value="" disabled selected>Select platform...</option>
+                    <option value="trackflow-android">TrackFlow (Android)</option>
+                    <option value="connectcall-android">ConnectCall (Android)</option>
+                    <option value="web">Web Utility Suite</option>
+                    <option value="ios">iOS Preview</option>
+                    <option value="macos-desktop">macOS Desktop</option>
+                    <option value="linux">Linux Utility</option>
+                  </select>
+                  <svg class="select-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Field: Issue Type -->
+              <div class="form-group">
+                <label for="issueSelect" class="form-label">ISSUE TYPE</label>
+                <div class="select-wrapper">
+                  <select id="issueSelect" name="issue" class="form-select" required>
+                    <option value="" disabled selected>Select request scope...</option>
+                    <option value="account-deletion">Account Deletion Request (GDPR / CCPA)</option>
+                    <option value="data-export">Personal Data Access &amp; Export</option>
+                    <option value="bug-report">Technical Bug Report / Crash</option>
+                    <option value="privacy-query">Privacy Policy Clarification</option>
+                    <option value="general">General Inquiry &amp; Feedback</option>
+                  </select>
+                  <svg class="select-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Field: Message -->
+              <div class="form-group">
+                <label for="userMessage" class="form-label">MESSAGE</label>
+                <textarea id="userMessage" name="message" class="form-textarea" rows="4" placeholder="Describe your inquiry or deletion request..." required></textarea>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="submit-btn" id="submitBtn">
+                <span class="btn-text">Submit Request</span>
+                <span class="btn-spinner" aria-hidden="true"></span>
+              </button>
+
+              <div class="form-feedback" id="formFeedback" role="alert" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-wrapper">
+    <div class="footer-container">
+      <div class="footer-left">
+        <span class="system-status-dot"></span>
+        <span class="footer-publisher-text">WIDGETX SYSTEMS • SOFTWARE PUBLISHER</span>
+      </div>
+      <div class="footer-right">
+        <span class="footer-copyright-text">
+          &copy; 2024 WidgetX Inc. All rights reserved. • Developed by Adarsh Gupta
+        </span>
+        <div class="footer-social-links">
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="WidgetX GitHub">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="WidgetX LinkedIn">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal Component for Privacy, Terms, Data Retention & Google Play -->
+  <div class="modal-overlay" id="modalOverlay" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modalTitle">Document Details</h4>
+        <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close dialog">&times;</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
