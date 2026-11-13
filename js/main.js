@@ -304,15 +304,31 @@ function initSupportForm() {
 
     feedback.style.display = 'none';
 
+    const userTz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Asia/Kolkata';
+    const localTime24 = new Date().toLocaleString('en-GB', {
+      timeZone: userTz,
+      hour12: false, // 24-hour clock
+      year: 'numeric',
+      month: 'short',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      timeZoneName: 'short',
+    }) + ' (24hr)';
+
     const payload = {
       name: (document.getElementById('userName')?.value || '').trim(),
       email: (document.getElementById('userEmail')?.value || '').trim(),
       platform: document.getElementById('platformSelect')?.value || 'Web Utility Suite',
       issue: document.getElementById('issueSelect')?.value || 'General Inquiry & Feedback',
       message: (document.getElementById('userMessage')?.value || '').trim(),
+      clientTime: localTime24,
+      timeZone: userTz,
     };
 
     let ticketId = 'WX-' + Math.floor(100000 + Math.random() * 900000);
+    let finalTime = localTime24;
 
     try {
       const res = await fetch('/api/contact', {
@@ -323,6 +339,7 @@ function initSupportForm() {
       if (res.ok) {
         const data = await res.json();
         if (data.ticketId) ticketId = data.ticketId;
+        if (data.timestamp) finalTime = data.timestamp;
       }
     } catch (_) {
       // offline / local fallback
@@ -362,7 +379,8 @@ function initSupportForm() {
         <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; margin-bottom: 20px; font-size: 13px; line-height: 1.8;">
           <div style="color: #CCD6F6;"><span style="color: #2DE2B6;">●</span> <strong>Delivered to:</strong> contact.widgetx@gmail.com</div>
           <div style="color: #CCD6F6;"><span style="color: #64FFDA;">●</span> <strong>Receipt dispatched to:</strong> ${payload.email}</div>
-          <div style="color: #CCD6F6;"><span style="color: #38BDF8;">●</span> <strong>Response SLA:</strong> Within 24 business hours</div>
+          <div style="color: #CCD6F6;"><span style="color: #38BDF8;">●</span> <strong>Received At (24h):</strong> <span style="font-family: monospace; color: #2DE2B6;">${finalTime}</span></div>
+          <div style="color: #CCD6F6;"><span style="color: #8892B0;">●</span> <strong>Response SLA:</strong> Within 24 business hours</div>
         </div>
 
         <div style="display: flex; gap: 12px;">

@@ -19,7 +19,7 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const { name, email, platform, issue, message } = req.body || {};
+    const { name, email, platform, issue, message, clientTime, timeZone } = req.body || {};
 
     if (!name || !email || !message) {
       return res.status(400).json({ error: 'Name, email, and message are required.' });
@@ -27,7 +27,27 @@ module.exports = async function handler(req, res) {
 
     const ticketId = 'WX-' + Math.floor(100000 + Math.random() * 900000);
     const adminEmail = 'contact.widgetx@gmail.com';
-    const timestamp = new Date().toISOString();
+
+    // 24-Hour Time Format according to User's state/region timezone (or IST)
+    let formattedTimestamp = clientTime;
+    if (!formattedTimestamp) {
+      try {
+        const targetTz = timeZone || 'Asia/Kolkata';
+        formattedTimestamp = new Intl.DateTimeFormat('en-GB', {
+          timeZone: targetTz,
+          hour12: false, // Strict 24-hour format
+          year: 'numeric',
+          month: 'short',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          timeZoneName: 'short',
+        }).format(new Date()) + ' (24hr)';
+      } catch (_) {
+        formattedTimestamp = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC (24hr)';
+      }
+    }
 
     // Check for SMTP / Gmail app password in environment
     const smtpUser = process.env.SMTP_USER || process.env.GMAIL_USER || adminEmail;
@@ -52,7 +72,7 @@ module.exports = async function handler(req, res) {
         to: adminEmail,
         replyTo: email,
         subject: `[Ticket #${ticketId}] New Support Inquiry: ${issue || 'General'} (${platform || 'Web'})`,
-        text: `New support inquiry received:\n\nTicket: #${ticketId}\nSender: ${name} <${email}>\nPlatform: ${platform || 'General'}\nIssue Scope: ${issue || 'General'}\nTime: ${timestamp}\n\nMessage:\n${message}`,
+        text: `New support inquiry received:\n\nTicket: #${ticketId}\nSender: ${name} <${email}>\nPlatform: ${platform || 'General'}\nIssue Scope: ${issue || 'General'}\nReceived At (24h): ${formattedTimestamp}\n\nMessage:\n${message}`,
         html: `
           <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #0A192F; color: #FFFFFF; padding: 28px; border-radius: 12px; max-width: 650px;">
             <div style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 16px; margin-bottom: 20px;">
@@ -63,7 +83,7 @@ module.exports = async function handler(req, res) {
               <tr><td style="padding: 6px 0; color: #8892B0; width: 140px;">Sender:</td><td style="font-weight: 600;">${name} &lt;${email}&gt;</td></tr>
               <tr><td style="padding: 6px 0; color: #8892B0;">Platform:</td><td>${platform || 'N/A'}</td></tr>
               <tr><td style="padding: 6px 0; color: #8892B0;">Issue Scope:</td><td>${issue || 'N/A'}</td></tr>
-              <tr><td style="padding: 6px 0; color: #8892B0;">Received At:</td><td>${timestamp}</td></tr>
+              <tr><td style="padding: 6px 0; color: #8892B0;">Received At (24h):</td><td style="font-family: monospace; color: #2DE2B6; font-weight: 600;">${formattedTimestamp}</td></tr>
             </table>
             <div style="background-color: #101E36; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 18px; margin-bottom: 20px;">
               <div style="font-size: 12px; font-weight: 600; color: #2DE2B6; margin-bottom: 8px; letter-spacing: 1px;">MESSAGE CONTENT</div>
@@ -97,6 +117,9 @@ module.exports = async function handler(req, res) {
             <div style="background-color: #101E36; border-left: 4px solid #2DE2B6; border-radius: 4px; padding: 14px 18px; margin: 20px 0;">
               <div style="font-weight: 600; color: #2DE2B6; font-size: 13.5px;">✓ Status: In Review Queue</div>
               <div style="color: #8892B0; font-size: 13px; margin-top: 4px;">
+                Received At (24h): <strong style="color: #64FFDA; font-family: monospace;">${formattedTimestamp}</strong>
+              </div>
+              <div style="color: #8892B0; font-size: 13px; margin-top: 4px;">
                 Our compliance and engineering team typically processes all inquiries within <strong>24 business hours</strong>.
               </div>
             </div>
@@ -126,7 +149,7 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({
       success: true,
       ticketId,
-      timestamp,
+      timestamp: formattedTimestamp,
       adminEmail,
       userEmail: email,
       deliveredToAdmin,

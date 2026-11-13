@@ -1271,6 +1271,7 @@ class _SupportRequestCardState extends State<SupportRequestCard> {
   String? _submittedPlatform;
   String? _submittedIssue;
   String? _submittedMessage;
+  String? _submittedTimestamp;
   bool _copied = false;
   bool _deliveredToAdmin = false;
   bool _deliveredToUser = false;
@@ -1296,7 +1297,25 @@ class _SupportRequestCardState extends State<SupportRequestCard> {
       _isSubmitting = true;
     });
 
+    // Compute user's local state/region 24-hour time
+    final now = DateTime.now();
+    final year = now.year.toString();
+    final month = now.month.toString().padLeft(2, '0');
+    final day = now.day.toString().padLeft(2, '0');
+    final hour = now.hour.toString().padLeft(2, '0');
+    final min = now.minute.toString().padLeft(2, '0');
+    final sec = now.second.toString().padLeft(2, '0');
+    final offset = now.timeZoneOffset;
+    final offsetSign = offset.isNegative ? '-' : '+';
+    final offsetHours = offset.inHours.abs().toString().padLeft(2, '0');
+    final offsetMins = (offset.inMinutes.abs() % 60).toString().padLeft(2, '0');
+    final tzStr = now.timeZoneName.isNotEmpty
+        ? now.timeZoneName
+        : 'GMT$offsetSign$offsetHours:$offsetMins';
+    final localTime24 = '$day/$month/$year, $hour:$min:$sec ($tzStr - 24hr)';
+
     String ticket = 'WX-${100000 + math.Random().nextInt(900000)}';
+    String finalTime = localTime24;
     bool adminOk = false;
     bool userOk = false;
 
@@ -1311,6 +1330,8 @@ class _SupportRequestCardState extends State<SupportRequestCard> {
               'platform': platform,
               'issue': issue,
               'message': message,
+              'clientTime': localTime24,
+              'timeZone': tzStr,
             }),
           )
           .timeout(const Duration(seconds: 8));
@@ -1319,6 +1340,9 @@ class _SupportRequestCardState extends State<SupportRequestCard> {
         final data = jsonDecode(response.body);
         if (data['ticketId'] != null) {
           ticket = data['ticketId'].toString();
+        }
+        if (data['timestamp'] != null) {
+          finalTime = data['timestamp'].toString();
         }
         adminOk = data['deliveredToAdmin'] == true;
         userOk = data['deliveredToUser'] == true;
@@ -1337,6 +1361,7 @@ class _SupportRequestCardState extends State<SupportRequestCard> {
       _submittedPlatform = platform;
       _submittedIssue = issue;
       _submittedMessage = message;
+      _submittedTimestamp = finalTime;
       _deliveredToAdmin = adminOk;
       _deliveredToUser = userOk;
       _copied = false;
@@ -1560,6 +1585,13 @@ class _SupportRequestCardState extends State<SupportRequestCard> {
                 color: AppColors.accentBlue,
                 label: 'Response SLA:',
                 value: 'Within 24 business hours',
+              ),
+              const SizedBox(height: 10),
+              _statusRow(
+                icon: Icons.access_time_rounded,
+                color: AppColors.accentTeal,
+                label: 'Received At (24h):',
+                value: _submittedTimestamp ?? 'Logged',
               ),
               if (!_deliveredToAdmin) ...[
                 const SizedBox(height: 12),
