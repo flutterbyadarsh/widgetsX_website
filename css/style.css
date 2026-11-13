@@ -113,6 +113,75 @@ body {
 }
 
 /* --------------------------------------------------------------------------
+   Google Play Trust & Compliance Banners
+   -------------------------------------------------------------------------- */
+.top-trust-banner {
+  background: rgba(9, 30, 43, 0.95);
+  border-bottom: 1px solid rgba(45, 226, 182, 0.25);
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-mint);
+  letter-spacing: 0.3px;
+  position: relative;
+  z-index: 101;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.bottom-trust-banner {
+  background: rgba(15, 35, 61, 0.45);
+  border: 1px solid rgba(100, 255, 218, 0.2);
+  border-radius: 10px;
+  padding: 12px 20px;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-teal);
+  letter-spacing: 0.4px;
+  margin: 30px 24px 40px;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+@media (min-width: 1248px) {
+  .bottom-trust-banner {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.modal-trust-badge {
+  background: rgba(45, 226, 182, 0.12);
+  border: 1px solid rgba(45, 226, 182, 0.3);
+  border-radius: 8px;
+  padding: 10px 14px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--accent-mint);
+  margin-bottom: 18px;
+}
+
+.modal-trust-badge-footer {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 10px 14px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: var(--text-primary);
+  margin-top: 20px;
+}
+
+/* --------------------------------------------------------------------------
    Navbar Header
    -------------------------------------------------------------------------- */
 .navbar-wrapper {

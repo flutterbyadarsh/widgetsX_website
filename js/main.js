@@ -134,22 +134,53 @@ function initFilterTabs() {
  */
 const modalContent = {
   'privacy-modal': {
-    title: 'Privacy Policy',
+    title: 'Privacy Policy for WidgetX',
     content: `
-      <h4>Commitment to Zero-Knowledge Telemetry</h4>
-      <p>At WidgetX, we build utilities engineered with strict data minimization principles. Our software operates on a local-first paradigm.</p>
-      
-      <h4>Data Collection & Use</h4>
+      <div class="modal-trust-badge">
+        🛡️ Verified &amp; Trusted Website – Google Play Store Compliant
+      </div>
+      <p style="font-size: 0.85rem; color: var(--accent-mint); font-weight: 600; margin-bottom: 12px;">
+        Effective Date: November 14, 2026
+      </p>
+      <p>At WidgetX, we believe in 100% fairness and transparency. We have built this platform with the utmost respect for your privacy. This Privacy Policy explains how we collect, strictly secure, and handle your information.</p>
+      <p><strong>We want to be crystal clear: We DO NOT sell your personal data to anyone.</strong> Your data is strictly secured and treated with the highest level of confidentiality.</p>
+
+      <h4>1. Google Play Families Policy Compliance</h4>
+      <p>WidgetX is committed to providing a safe and secure environment for all users, including children and families. We are fully compliant with the Google Play Families Policy. We ensure that our app's content, advertisements, and data collection practices are entirely age-appropriate. We do not collect personal information from children without verifiable parental consent, and our views and interfaces are designed to be safe for family usage.</p>
+
+      <h4>2. Information Collection and Strict Security</h4>
+      <p>When you use our services, we may collect basic information required to provide you with a seamless experience. We employ industry-standard, robust security measures to prevent unauthorized access, alteration, disclosure, or destruction of your personal information. Your trust is our top priority, and we store everything strictly and securely.</p>
+
+      <h4>3. Data Retention Policy</h4>
+      <p>We manage your data carefully to ensure you have a consistent experience:</p>
       <ul>
-        <li><strong>TrackFlow:</strong> All fitness telemetry and sensor records are stored purely on your local device. No raw health or sensor metrics are ever transmitted without explicit user export.</li>
-        <li><strong>ConnectCall:</strong> Voice transmission uses end-to-end encryption (E2EE) protocols. We maintain zero call logs and no audio recordings on central servers.</li>
+        <li><strong>Under 90 Days:</strong> We do not manually delete your active data within the first 90 days of your usage.</li>
+        <li><strong>After 90 Days:</strong> If we need to keep your data beyond this period for service continuity, we will notify you via email or in-app notice, advising you on the retention. You will always be informed about your data lifecycle.</li>
       </ul>
 
-      <h4>Third-Party Sharing</h4>
-      <p>We do not monetize, sell, or license user information to third-party ad networks or data brokers.</p>
+      <h4>4. Account and Data Deletion Request</h4>
+      <p>You have full control over your data. If you face any issues, wish to revoke consent, or want to permanently delete your account and all associated data, you can do so easily:</p>
+      <ul>
+        <li><strong>Email Us:</strong> Send a data deletion request directly to <a href="mailto:contact.widgetx@gmail.com" style="color:var(--accent-mint); text-decoration:none;">contact.widgetx@gmail.com</a>.</li>
+        <li><strong>Fill the Form:</strong> You can also submit a request through our dedicated Support and Data Deletion Request Form in the app/website.</li>
+      </ul>
+      <p><strong>Processing Time:</strong> Once your request is received, all your data will be permanently and securely deleted from our servers within 3 to 4 working days.</p>
 
-      <h4>User Rights</h4>
-      <p>You may request full data deletion or audit logs at any time using our Support & Data Requests portal.</p>
+      <h4>5. Third-Party Services</h4>
+      <p>We only use trusted third-party services (like secure databases or authentication providers) necessary for the app to function. These services are bound by strict confidentiality agreements and are not permitted to use your data for their own purposes.</p>
+
+      <h4>6. Changes to This Privacy Policy</h4>
+      <p>We may update our Privacy Policy from time to time to reflect our ongoing commitment to your security. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
+
+      <h4>Contact Us</h4>
+      <p>If you have any questions, concerns, or suggestions regarding this policy, we are always here to help.</p>
+      <ul>
+        <li>Email: <a href="mailto:contact.widgetx@gmail.com" style="color:var(--accent-mint); text-decoration:none;">contact.widgetx@gmail.com</a></li>
+      </ul>
+
+      <div class="modal-trust-badge-footer">
+        🛡️ Certified for Google Play Store Trust &amp; Safety | WidgetX.online
+      </div>
     `
   },
   'terms-modal': {
@@ -168,17 +199,23 @@ const modalContent = {
   'retention-modal': {
     title: 'Data Retention & Security Overview',
     content: `
-      <h4>Enterprise-Grade Security Architecture</h4>
-      <p>We implement AES-256-GCM encryption at rest and TLS 1.3 in transit across all network utilities.</p>
+      <div class="modal-trust-badge">
+        🛡️ Google Play Families Policy Compliant
+      </div>
+      <h4>Google Play Compliant Retention Standards</h4>
+      <p>WidgetX manages data lifecycles with strict transparency, adhering to Google Play Families Policy and modern privacy guidelines.</p>
 
-      <h4>Retention Schedules</h4>
+      <h4>Active Retention Lifecycle</h4>
       <ul>
-        <li><strong>Support Inquiries:</strong> Retained for 30 days following ticket resolution, then permanently purged.</li>
-        <li><strong>Telemetry Diagnostics:</strong> Optional anonymous crash dumps are automatically wiped after 14 days.</li>
+        <li><strong>First 90 Days:</strong> Active data remains safely preserved to ensure service stability without premature manual deletion.</li>
+        <li><strong>Beyond 90 Days:</strong> Prior notice via email or in-app notification is provided before extending retention periods.</li>
       </ul>
 
-      <h4>Verification & Audit</h4>
-      <p>Our infrastructure undergoes periodic security evaluations in full compliance with the Google Play Families Policy and modern privacy frameworks.</p>
+      <h4>Permanent Deletion Guarantee</h4>
+      <p>Account and personal data deletion requests submitted to <a href="mailto:contact.widgetx@gmail.com" style="color:var(--accent-mint);">contact.widgetx@gmail.com</a> or via our Support Form are permanently processed within 3 to 4 working days.</p>
+
+      <h4>Data Protection &amp; Zero-Selling</h4>
+      <p>All data in transit is encrypted using TLS 1.3, and data at rest is secured via AES-256. We strictly NEVER sell user data to any third party.</p>
     `
   },
   'trackflow-play': {

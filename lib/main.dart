@@ -167,6 +167,9 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                // Top Google Play Compliance Trust Banner
+                _buildTopTrustBanner(),
+
                 // Sticky Navbar
                 _buildNavbar(isDesktop),
 
@@ -191,7 +194,10 @@ class _HomePageState extends State<HomePage> {
                           // Trust & Compliance + Support Dual Section
                           Container(key: _complianceKey),
                           _buildGovernanceSupportSection(isDesktop),
-                          const SizedBox(height: 60),
+                          const SizedBox(height: 50),
+
+                          // Bottom Trust Certification Banner
+                          _buildBottomTrustBanner(),
                         ],
                       ),
                     ),
@@ -204,6 +210,74 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildTopTrustBanner() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 16),
+      decoration: const BoxDecoration(
+        color: Color(0xD9091E2B),
+        border: Border(bottom: BorderSide(color: Color(0x332DE2B6))),
+      ),
+      child: Center(
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('🛡️', style: TextStyle(fontSize: 14)),
+            const SizedBox(width: 8),
+            Flexible(
+              child: Text(
+                'Verified & Trusted Website – Google Play Store Compliant',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.inter(
+                  fontSize: 12.5,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.accentMint,
+                  letterSpacing: 0.3,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildBottomTrustBanner() {
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.only(top: 10, bottom: 20),
+      padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+      decoration: BoxDecoration(
+        color: const Color(0x140F233D),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color(0x2E64FFDA)),
+      ),
+      child: Center(
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('🛡️', style: TextStyle(fontSize: 15)),
+            const SizedBox(width: 10),
+            Flexible(
+              child: Text(
+                'Certified for Google Play Store Trust & Safety | WidgetX.online',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.inter(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.accentTeal,
+                  letterSpacing: 0.4,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -790,21 +864,108 @@ class _HomePageState extends State<HomePage> {
   void _showPrivacyPolicyModal() {
     _showModal(
       context,
-      'Privacy Policy',
+      'Privacy Policy for WidgetX',
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _modalSectionHeader('Commitment to Zero-Knowledge Telemetry'),
+          // Trust Header Badge
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+            decoration: BoxDecoration(
+              color: const Color(0x1F2DE2B6),
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: const Color(0x4D2DE2B6)),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text('🛡️', style: TextStyle(fontSize: 14)),
+                const SizedBox(width: 8),
+                Flexible(
+                  child: Text(
+                    'Verified & Trusted Website – Google Play Store Compliant',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.inter(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.accentMint,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
+
+          Text(
+            'Effective Date: November 14, 2026',
+            style: GoogleFonts.jetBrainsMono(
+              fontSize: 12,
+              color: AppColors.accentTeal,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(height: 8),
+
           _modalParagraph(
-              'At WidgetX, we build utilities engineered with strict data minimization principles. Our software operates on a local-first paradigm.'),
-          _modalSectionHeader('Data Collection & Use'),
-          _modalBullet(
-              'TrackFlow: All fitness telemetry and sensor records are stored purely on your local device. No raw health metrics are transmitted without explicit export.'),
-          _modalBullet(
-              'ConnectCall: Voice transmission uses end-to-end encryption (E2EE) protocols. We maintain zero call logs and no audio recordings on central servers.'),
-          _modalSectionHeader('User Rights'),
+              'At WidgetX, we believe in 100% fairness and transparency. We have built this platform with the utmost respect for your privacy. This Privacy Policy explains how we collect, strictly secure, and handle your information.'),
           _modalParagraph(
-              'You may request full data deletion or audit logs at any time using our Support & Data Requests portal.'),
+              'We want to be crystal clear: We DO NOT sell your personal data to anyone. Your data is strictly secured and treated with the highest level of confidentiality.'),
+
+          _modalSectionHeader('1. Google Play Families Policy Compliance'),
+          _modalParagraph(
+              'WidgetX is committed to providing a safe and secure environment for all users, including children and families. We are fully compliant with the Google Play Families Policy. We ensure that our app\'s content, advertisements, and data collection practices are entirely age-appropriate. We do not collect personal information from children without verifiable parental consent, and our views and interfaces are designed to be safe for family usage.'),
+
+          _modalSectionHeader('2. Information Collection and Strict Security'),
+          _modalParagraph(
+              'When you use our services, we may collect basic information required to provide you with a seamless experience. We employ industry-standard, robust security measures to prevent unauthorized access, alteration, disclosure, or destruction of your personal information. Your trust is our top priority, and we store everything strictly and securely.'),
+
+          _modalSectionHeader('3. Data Retention Policy'),
+          _modalParagraph('We manage your data carefully to ensure you have a consistent experience:'),
+          _modalBullet('Under 90 Days: We do not manually delete your active data within the first 90 days of your usage.'),
+          _modalBullet('After 90 Days: If we need to keep your data beyond this period for service continuity, we will notify you via email or in-app notice, advising you on the retention. You will always be informed about your data lifecycle.'),
+
+          _modalSectionHeader('4. Account and Data Deletion Request'),
+          _modalParagraph('You have full control over your data. If you face any issues, wish to revoke consent, or want to permanently delete your account and all associated data, you can do so easily:'),
+          _modalBullet('Email Us: Send a data deletion request directly to contact.widgetx@gmail.com.'),
+          _modalBullet('Fill the Form: You can also submit a request through our dedicated Support and Data Deletion Request Form in the app/website.'),
+          _modalParagraph(
+              'Processing Time: Once your request is received, all your data will be permanently and securely deleted from our servers within 3 to 4 working days.'),
+
+          _modalSectionHeader('5. Third-Party Services'),
+          _modalParagraph(
+              'We only use trusted third-party services (like secure databases or authentication providers) necessary for the app to function. These services are bound by strict confidentiality agreements and are not permitted to use your data for their own purposes.'),
+
+          _modalSectionHeader('6. Changes to This Privacy Policy'),
+          _modalParagraph(
+              'We may update our Privacy Policy from time to time to reflect our ongoing commitment to your security. We will notify you of any changes by posting the new Privacy Policy on this page.'),
+
+          _modalSectionHeader('Contact Us'),
+          _modalBullet('Email: contact.widgetx@gmail.com'),
+          const SizedBox(height: 14),
+
+          // Trust Footer Badge
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+            decoration: BoxDecoration(
+              color: const Color(0x0FFFFFFF),
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: const Color(0x1FFFFFFF)),
+            ),
+            child: Center(
+              child: Text(
+                '🛡️ Certified for Google Play Store Trust & Safety | WidgetX.online',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.inter(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.textPrimary,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -835,12 +996,18 @@ class _HomePageState extends State<HomePage> {
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _modalSectionHeader('Enterprise-Grade Security Architecture'),
+          _modalSectionHeader('Google Play Compliant Retention Standards'),
           _modalParagraph(
-              'We implement AES-256-GCM encryption at rest and TLS 1.3 in transit across all network utilities.'),
-          _modalSectionHeader('Retention Schedules'),
-          _modalBullet('Support Inquiries: Retained for 30 days following ticket resolution, then permanently purged.'),
-          _modalBullet('Telemetry Diagnostics: Optional anonymous crash dumps are automatically wiped after 14 days.'),
+              'WidgetX manages data lifecycles with strict transparency, adhering to Google Play Families Policy and modern privacy guidelines.'),
+          _modalSectionHeader('Active Retention Lifecycle'),
+          _modalBullet('First 90 Days: Active data remains safely preserved to ensure service stability without premature manual deletion.'),
+          _modalBullet('Beyond 90 Days: Prior notice via email or in-app notification is provided before extending retention periods.'),
+          _modalSectionHeader('Permanent Deletion Guarantee'),
+          _modalParagraph(
+              'Account and personal data deletion requests submitted to contact.widgetx@gmail.com or via the Support Form are permanently processed within 3 to 4 working days.'),
+          _modalSectionHeader('Data Protection & Fairness'),
+          _modalParagraph(
+              'All data in transit is encrypted using TLS 1.3, and data at rest is secured via AES-256. We NEVER sell user data to any third party.'),
         ],
       ),
     );
@@ -1711,7 +1878,7 @@ class _SupportRequestCardState extends State<SupportRequestCard> {
           ),
           const SizedBox(height: 8),
           Text(
-            'Inquiries and account deletion requests are typically processed within 24 business hours.',
+            'Inquiries are answered within 24 business hours. Account & Data Deletion requests are permanently processed within 3 to 4 working days.',
             style: GoogleFonts.inter(
               fontSize: 14,
               color: AppColors.textMuted,
