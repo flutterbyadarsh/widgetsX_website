@@ -1272,6 +1272,8 @@ class _SupportRequestCardState extends State<SupportRequestCard> {
   String? _submittedIssue;
   String? _submittedMessage;
   bool _copied = false;
+  bool _deliveredToAdmin = false;
+  bool _deliveredToUser = false;
 
   @override
   void dispose() {
@@ -1295,6 +1297,8 @@ class _SupportRequestCardState extends State<SupportRequestCard> {
     });
 
     String ticket = 'WX-${100000 + math.Random().nextInt(900000)}';
+    bool adminOk = false;
+    bool userOk = false;
 
     try {
       final response = await http
@@ -1316,6 +1320,8 @@ class _SupportRequestCardState extends State<SupportRequestCard> {
         if (data['ticketId'] != null) {
           ticket = data['ticketId'].toString();
         }
+        adminOk = data['deliveredToAdmin'] == true;
+        userOk = data['deliveredToUser'] == true;
       }
     } catch (_) {
       // Offline / client fallback
@@ -1331,10 +1337,12 @@ class _SupportRequestCardState extends State<SupportRequestCard> {
       _submittedPlatform = platform;
       _submittedIssue = issue;
       _submittedMessage = message;
+      _deliveredToAdmin = adminOk;
+      _deliveredToUser = userOk;
       _copied = false;
     });
 
-    widget.onShowToast('✓ Request Dispatched: Ticket #$ticket');
+    widget.onShowToast('✓ Request Logged: Ticket #$ticket');
   }
 
   void _resetForm() {
@@ -1534,16 +1542,16 @@ class _SupportRequestCardState extends State<SupportRequestCard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _statusRow(
-                icon: Icons.mark_email_read_rounded,
+                icon: _deliveredToAdmin ? Icons.mark_email_read_rounded : Icons.cloud_done_rounded,
                 color: AppColors.accentTeal,
-                label: 'Delivered to:',
+                label: _deliveredToAdmin ? 'Delivered to inbox:' : 'Logged on server:',
                 value: 'contact.widgetx@gmail.com',
               ),
               const SizedBox(height: 10),
               _statusRow(
-                icon: Icons.send_rounded,
-                color: AppColors.accentMint,
-                label: 'Receipt dispatched to:',
+                icon: _deliveredToUser ? Icons.send_rounded : Icons.person_outline_rounded,
+                color: _deliveredToUser ? AppColors.accentMint : const Color(0xFFFFB74D),
+                label: _deliveredToUser ? 'Receipt sent to:' : 'Sender Email:',
                 value: _submittedEmail ?? 'Your email address',
               ),
               const SizedBox(height: 10),
@@ -1553,6 +1561,33 @@ class _SupportRequestCardState extends State<SupportRequestCard> {
                 label: 'Response SLA:',
                 value: 'Within 24 business hours',
               ),
+              if (!_deliveredToAdmin) ...[
+                const SizedBox(height: 12),
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: const Color(0x1FFF9800),
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: const Color(0x4DFF9800)),
+                  ),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.info_rounded, color: Color(0xFFFFB74D), size: 16),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          'Automated SMTP is pending activation. Use "Send via Email App" below to dispatch immediately from your mail client.',
+                          style: GoogleFonts.inter(
+                            fontSize: 12,
+                            color: const Color(0xFFFFCC80),
+                            height: 1.4,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ],
           ),
         ),
@@ -1566,7 +1601,7 @@ class _SupportRequestCardState extends State<SupportRequestCard> {
                 onPressed: _openDirectMail,
                 icon: const Icon(Icons.email_outlined, size: 17),
                 label: Text(
-                  'Email Us Directly',
+                  _deliveredToAdmin ? 'Email Us Directly' : 'Send via Email App (1-Click)',
                   style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600),
                 ),
                 style: ElevatedButton.styleFrom(
